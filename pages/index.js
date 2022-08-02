@@ -21,6 +21,7 @@ export default function Home() {
         <Box>
             {/*<TableTry/>*/}
 
+            {/* // https://chakra-ui.com/docs/components/table/usage#simple-table */}
             <TableContainer bg='gray.500' color='#fff' h={'30vh'}>
                 <Table size='sm' variant='unstyled'>
                     <Thead>
