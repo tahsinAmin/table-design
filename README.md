@@ -8,6 +8,7 @@
 - That For anything to do inside the table, you must add Box tag inside and then change to anything.
 - Circle Icon
 - Mapping array of arrays
+- Workaround for having text in multiple lines in Table
 
 ## Problem facing
 - [x] How to map array of array
