@@ -1,5 +1,5 @@
-import { Box, Center, Flex, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, VStack, Wrap } from "@chakra-ui/react";
-import { CheckIcon, Icon } from "@chakra-ui/icons";
+import { Box, Button, Center, Flex, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, VStack, Wrap } from "@chakra-ui/react";
+import { AddIcon, CheckIcon, Icon } from "@chakra-ui/icons";
 import { GrStackOverflow } from "react-icons/gr";
 import { BsFillMicFill } from "react-icons/bs";
 import { GiHeadphones } from "react-icons/gi";
@@ -7,19 +7,11 @@ import { TiHeadphones } from "react-icons/ti";
 import { MdColorLens, MdTouchApp } from "react-icons/md";
 import { FaBluetooth, FaHandHoldingHeart, FaHeadphones } from "react-icons/fa";
 import { useState } from "react";
+import CircleIcon from "../CircleIcon/CircleIcon";
 
 
 const TableTry = () => {
-
-    const CircleIcon = (props) => (
-        <Icon viewBox='0 0 200 200' {...props}>
-            <path
-                fill='currentColor'
-                d='M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0'
-            />
-        </Icon>
-    )
-
+    const [cnt, setCnt] = useState(0)
     const [data, setData] = useState([
         // {
         //     "name": <VStack><TiHeadphones size={"36px"} />
@@ -64,84 +56,92 @@ const TableTry = () => {
         }
     ]);
     return (
-        <TableContainer>
-            <Table size='sm' variant='unstyled'>
-                <Thead>
-                    <Tr>
-                        <Th border={'none'}></Th>
-                        <Th border={'none'}></Th>
-                        {data.map((item) => <Th border={'none'}><Center>{item.name}</Center></Th>)}
-                    </Tr>
-                </Thead>
-                <Tbody>
-                    <Tr>
-                        <Td border={'none'} as={Flex} justifyContent={'flex-end'}><FaBluetooth size={"16px"} /></Td>
-                        <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}>
-                            Wireless with bluetooth</Td>
-                        {data.map((item) => <Td border='1px solid #fff' borderTop={0}
-                            borderRight={0}><Center>{item.wWB && <CheckIcon />}</Center></Td>)}
-                    </Tr>
-                    <Tr>
-                        <Td border={'none'} as={Flex} justifyContent={'flex-end'}><MdTouchApp /></Td>
-                        <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}>Touch interface</Td>
-                        {data.map((item) => <Td border='1px solid #fff' borderTop={0}
-                            borderRight={0}><Center>{item.tI && <CheckIcon />}</Center></Td>)}
-                    </Tr>
+        <Box>
+            <Button leftIcon={<AddIcon />} colorScheme='teal' variant='solid' onClick={() => {
+                setData([...data, data[cnt]])
+                setCnt(cnt + 1)
+            }}>
+                Add to compare one more
+            </Button>
+            <TableContainer>
+                <Table size='sm' variant='unstyled'>
+                    <Thead>
+                        <Tr>
+                            <Th border={'none'}></Th>
+                            <Th border={'none'}></Th>
+                            {data.map((item) => <Th border={'none'}><Center>{item.name}</Center></Th>)}
+                        </Tr>
+                    </Thead>
+                    <Tbody>
+                        <Tr>
+                            <Td border={'none'} as={Flex} justifyContent={'flex-end'}><FaBluetooth size={"16px"} /></Td>
+                            <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}>
+                                Wireless with bluetooth</Td>
+                            {data.map((item) => <Td border='1px solid #fff' borderTop={0}
+                                borderRight={0}><Center>{item.wWB && <CheckIcon />}</Center></Td>)}
+                        </Tr>
+                        <Tr>
+                            <Td border={'none'} as={Flex} justifyContent={'flex-end'}><MdTouchApp /></Td>
+                            <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}>Touch interface</Td>
+                            {data.map((item) => <Td border='1px solid #fff' borderTop={0}
+                                borderRight={0}><Center>{item.tI && <CheckIcon />}</Center></Td>)}
+                        </Tr>
 
-                    <Tr>
-                        <Td border={'none'} as={Flex} justifyContent={'flex-end'}><BsFillMicFill /></Td>
-                        <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}>Remote + Mic</Td>
-                        {data.map((item) => <Td border='1px solid #fff' borderTop={0}
-                            borderRight={0}><Center>{item.rM && <CheckIcon />}</Center></Td>)}
-                    </Tr>
+                        <Tr>
+                            <Td border={'none'} as={Flex} justifyContent={'flex-end'}><BsFillMicFill /></Td>
+                            <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}>Remote + Mic</Td>
+                            {data.map((item) => <Td border='1px solid #fff' borderTop={0}
+                                borderRight={0}><Center>{item.rM && <CheckIcon />}</Center></Td>)}
+                        </Tr>
 
-                    <Tr>
-                        <Td border={'none'}><Box as={Flex} justifyContent={'flex-end'}
-                            alignItems='center'><GrStackOverflow /></Box></Td>
-                        <Td border='1px solid #fff' borderLeft={0} borderRight={0}
-                            borderTop={0}>Materials</Td>
-                        {data.map((item) => {
-                            {/* return (
+                        <Tr>
+                            <Td border={'none'}><Box as={Flex} justifyContent={'flex-end'}
+                                alignItems='center'><GrStackOverflow /></Box></Td>
+                            <Td border='1px solid #fff' borderLeft={0} borderRight={0}
+                                borderTop={0}>Materials</Td>
+                            {data.map((item) => {
+                                {/* return (
                                 <Td border='1px solid #fff' borderRight={0}
                                     borderTop={0}>
                                     <Wrap w='50%'>
                                         {item.m.map((materialItem, index) => <Text align='center'>{materialItem}</Text>)}
                                     </Wrap></Td>
                             ) */}
-                            return (
-                                <Td border='1px solid #fff' borderRight={0}
-                                    borderTop={0}>
-                                    <Box>
-                                        {item.m.map((materialItem, index) => {
-                                            if (index == item.m.length - 1) return <Text align='center'>{materialItem}</Text>
-                                            else return <Text align='center'>{materialItem},</Text>
-                                        })}
-                                    </Box></Td>
-                            )
-                        }
-                        )}
-                    </Tr>
-                    <Tr>
-                        <Td border={'none'} as={Flex} justifyContent={'flex-end'}><MdColorLens /></Td>
-                        <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}>Colours</Td>
-                        {data.map((item) => {
-                            return (<Td border='1px solid #fff' borderTop={0} borderRight={0}>
-                                <Flex justifyContent={'center'} gap={1}>
-                                    {item.colors.map((colorItem) => <CircleIcon boxSize={5} color={colorItem} />)}
-                                </Flex>
-                            </Td>)
-                        })}
-                    </Tr>
-                    <Tr>
-                        <Td border={'none'} as={Flex} justifyContent={'flex-end'}><FaHandHoldingHeart /></Td>
-                        <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}
-                            borderBottom={0}>Fit</Td>
-                        {data.map((item) => <Td border='1px solid #fff' borderTop={0} borderRight={0}
-                            borderBottom={0}><Center>{item.fit}</Center></Td>)}
-                    </Tr>
-                </Tbody>
-            </Table>
-        </TableContainer>
+                                return (
+                                    <Td border='1px solid #fff' borderRight={0}
+                                        borderTop={0}>
+                                        <Box>
+                                            {item.m.map((materialItem, index) => {
+                                                if (index == item.m.length - 1) return <Text align='center'>{materialItem}</Text>
+                                                else return <Text align='center'>{materialItem},</Text>
+                                            })}
+                                        </Box></Td>
+                                )
+                            }
+                            )}
+                        </Tr>
+                        <Tr>
+                            <Td border={'none'} as={Flex} justifyContent={'flex-end'}><MdColorLens /></Td>
+                            <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}>Colours</Td>
+                            {data.map((item) => {
+                                return (<Td border='1px solid #fff' borderTop={0} borderRight={0}>
+                                    <Flex justifyContent={'center'} gap={1}>
+                                        {item.colors.map((colorItem) => <CircleIcon boxSize={5} color={colorItem} />)}
+                                    </Flex>
+                                </Td>)
+                            })}
+                        </Tr>
+                        <Tr>
+                            <Td border={'none'} as={Flex} justifyContent={'flex-end'}><FaHandHoldingHeart /></Td>
+                            <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}
+                                borderBottom={0}>Fit</Td>
+                            {data.map((item) => <Td border='1px solid #fff' borderTop={0} borderRight={0}
+                                borderBottom={0}><Center>{item.fit}</Center></Td>)}
+                        </Tr>
+                    </Tbody>
+                </Table>
+            </TableContainer>
+        </Box>
     );
 
 }
