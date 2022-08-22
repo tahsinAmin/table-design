@@ -3,6 +3,8 @@
 - [x] Dynamic data 
 - [x] Circle Icon separate component
 - [x] Add a new headphone
+- [x] Able to optimize the text break with split method
+- [ ] Remove warnings if possible
 - [ ] UI Improvement and then video and shout out
 
 ## I have learned

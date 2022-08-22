@@ -19,38 +19,41 @@ const TableTry = () => {
         //     "wWB": false,
         //     "tI": true,
         //     "rM": true,
-        //     "m": ["Event Fee Return + Cycling", "Apparel Insured"],
+        //     "m": "Event Fee Return + Cycling Apparel Insured",
         //     "colors": ["blue.300", "pink.300", "gray.300"],
         //     "fit": "On-ear"
         // },
         {
             "name": <VStack><GiHeadphones size={"36px"} />
-                <Text>H3 Anic</Text></VStack>,
+                <Text fontSize={'xl'}>H3 Anic</Text></VStack>,
             "wWB": false,
             "tI": false,
             "rM": true,
             "m": ["Stainless steel", "polymer", "rubber",],
+            // "m": "Stainless steel polymer rubber",
             "colors": ["gray.300", "purple.300", "blue.300", "pink.300", "gray.300"],
             "fit": "Over-ear"
         },
         {
             "name": <VStack>
                 <FaHeadphones size={"36px"} />
-                <Text>H4 Ultra</Text></VStack>,
+                <Text fontSize={'xl'}>H4 Ultra</Text></VStack>,
             "wWB": true,
             "tI": true,
             "rM": true,
             "m": ["Aluminimum", "polymer", "rubber",],
+            // "m": "Aluminimum polymer rubber",
             "colors": ["gray.300", "red.300"],
             "fit": "On-ear"
         },
         {
             "name": <VStack><TiHeadphones size={"36px"} />
-                <Text>H2</Text></VStack>,
+                <Text fontSize={'xl'}>H2</Text></VStack>,
             "wWB": false,
             "tI": true,
             "rM": true,
             "m": ["Leather", "fabric", "polymer", "rubber"],
+            // "m": "Leather fabric polymer rubber",
             "colors": ["blue.300", "pink.300", "gray.300"],
             "fit": "In-ear"
         }
@@ -69,28 +72,29 @@ const TableTry = () => {
                         <Tr>
                             <Th border={'none'}></Th>
                             <Th border={'none'}></Th>
-                            {data.map((item) => <Th border={'none'}><Center>{item.name}</Center></Th>)}
+                            {data.map((item, index) => <Th key={index} border={'none'}><Center>{item.name}</Center></Th>)}
                         </Tr>
                     </Thead>
                     <Tbody>
                         <Tr>
                             <Td border={'none'} as={Flex} justifyContent={'flex-end'}><FaBluetooth size={"16px"} /></Td>
                             <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}>
-                                Wireless with bluetooth</Td>
-                            {data.map((item) => <Td border='1px solid #fff' borderTop={0}
+                                <Text fontSize={'xl'}>Wireless with bluetooth</Text></Td>
+                            {data.map((item, index) => <Td key={index} border='1px solid #fff' borderTop={0}
                                 borderRight={0}><Center>{item.wWB && <CheckIcon />}</Center></Td>)}
                         </Tr>
                         <Tr>
                             <Td border={'none'} as={Flex} justifyContent={'flex-end'}><MdTouchApp /></Td>
-                            <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}>Touch interface</Td>
-                            {data.map((item) => <Td border='1px solid #fff' borderTop={0}
+                            <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}><Text fontSize={'xl'}>Touch interface</Text></Td>
+                            {data.map((item, index) => <Td key={index} border='1px solid #fff' borderTop={0}
                                 borderRight={0}><Center>{item.tI && <CheckIcon />}</Center></Td>)}
                         </Tr>
 
                         <Tr>
                             <Td border={'none'} as={Flex} justifyContent={'flex-end'}><BsFillMicFill /></Td>
-                            <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}>Remote + Mic</Td>
-                            {data.map((item) => <Td border='1px solid #fff' borderTop={0}
+                            <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}><Text fontSize={'xl'}>Remote + Mic</Text>
+                            </Td>
+                            {data.map((item, index) => <Td key={index} border='1px solid #fff' borderTop={0}
                                 borderRight={0}><Center>{item.rM && <CheckIcon />}</Center></Td>)}
                         </Tr>
 
@@ -98,15 +102,18 @@ const TableTry = () => {
                             <Td border={'none'}><Box as={Flex} justifyContent={'flex-end'}
                                 alignItems='center'><GrStackOverflow /></Box></Td>
                             <Td border='1px solid #fff' borderLeft={0} borderRight={0}
-                                borderTop={0}>Materials</Td>
+                                borderTop={0}><Text fontSize={'xl'}>Materials</Text></Td>
                             {data.map((item) => {
                                 {/* return (
-                                <Td border='1px solid #fff' borderRight={0}
-                                    borderTop={0}>
-                                    <Wrap w='50%'>
-                                        {item.m.map((materialItem, index) => <Text align='center'>{materialItem}</Text>)}
-                                    </Wrap></Td>
-                            ) */}
+                                    <Td border='1px solid #fff' borderRight={0}
+                                        borderTop={0}>
+                                        <Wrap w={{ base: '100%', lg: '60%' }}>
+                                            {item.m.split(' ').map((materialItem, index) => {
+                                                if (index == item.m.length - 1) return <Text key={index} align='center' fontSize={'md'}>{materialItem}</Text>
+                                                else return <Text key={index} align='center' fontSize={'md'}>{materialItem}</Text>
+                                            })}
+                                        </Wrap></Td>
+                                ) */}
                                 return (
                                     <Td border='1px solid #fff' borderRight={0}
                                         borderTop={0}>
@@ -122,11 +129,11 @@ const TableTry = () => {
                         </Tr>
                         <Tr>
                             <Td border={'none'} as={Flex} justifyContent={'flex-end'}><MdColorLens /></Td>
-                            <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}>Colours</Td>
-                            {data.map((item) => {
-                                return (<Td border='1px solid #fff' borderTop={0} borderRight={0}>
+                            <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}><Text fontSize={'xl'}>Colours</Text></Td>
+                            {data.map((item, index) => {
+                                return (<Td key={index} border='1px solid #fff' borderTop={0} borderRight={0}>
                                     <Flex justifyContent={'center'} gap={1}>
-                                        {item.colors.map((colorItem) => <CircleIcon boxSize={5} color={colorItem} />)}
+                                        {item.colors.map((colorItem, index) => <CircleIcon key={index} boxSize={5} color={colorItem} />)}
                                     </Flex>
                                 </Td>)
                             })}
@@ -134,8 +141,8 @@ const TableTry = () => {
                         <Tr>
                             <Td border={'none'} as={Flex} justifyContent={'flex-end'}><FaHandHoldingHeart /></Td>
                             <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}
-                                borderBottom={0}>Fit</Td>
-                            {data.map((item) => <Td border='1px solid #fff' borderTop={0} borderRight={0}
+                                borderBottom={0}><Text fontSize={'xl'}>Fit</Text></Td>
+                            {data.map((item, index) => <Td key={index} border='1px solid #fff' borderTop={0} borderRight={0}
                                 borderBottom={0}><Center>{item.fit}</Center></Td>)}
                         </Tr>
                     </Tbody>
