@@ -6,23 +6,16 @@ import { GiHeadphones } from "react-icons/gi";
 import { TiHeadphones } from "react-icons/ti";
 import { MdColorLens, MdTouchApp } from "react-icons/md";
 import { FaBluetooth, FaHandHoldingHeart, FaHeadphones } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CircleIcon from "../CircleIcon/CircleIcon";
 
 
 const TableTry = () => {
     const [cnt, setCnt] = useState(0)
-    const [data, setData] = useState([
-        // {
-        //     "name": <VStack><TiHeadphones size={"36px"} />
-        //         <Text>H2</Text></VStack>,
-        //     "wWB": false,
-        //     "tI": true,
-        //     "rM": true,
-        //     "m": "Event Fee Return + Cycling Apparel Insured",
-        //     "colors": ["blue.300", "pink.300", "gray.300"],
-        //     "fit": "On-ear"
-        // },
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        setData([...data,
         {
             "name": <VStack><GiHeadphones size={"36px"} />
                 <Text fontSize={'xl'}>H3 Anic</Text></VStack>,
@@ -57,7 +50,9 @@ const TableTry = () => {
             "colors": ["blue.300", "pink.300", "gray.300"],
             "fit": "In-ear"
         }
-    ]);
+        ])
+    }, [])
+
     return (
         <Box>
             <Button leftIcon={<AddIcon />} colorScheme='teal' variant='solid' onClick={() => {
@@ -70,28 +65,28 @@ const TableTry = () => {
                 <Table size='sm' variant='unstyled'>
                     <Thead>
                         <Tr>
-                            <Th border={'none'}></Th>
-                            <Th border={'none'}></Th>
-                            {data.map((item, index) => <Th key={index} border={'none'}><Center>{item.name}</Center></Th>)}
+                            <Td border={'none'}></Td>
+                            <Td border={'none'}></Td>
+                            {data.map((item, index) => <Td key={index} border={'none'}><Center>{item.name}</Center></Td>)}
                         </Tr>
                     </Thead>
                     <Tbody>
                         <Tr>
-                            <Td border={'none'} as={Flex} justifyContent={'flex-end'}><FaBluetooth size={"16px"} /></Td>
+                            <Td isNumeric w="20px"><FaBluetooth size={"16px"} /></Td>
                             <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}>
                                 <Text fontSize={'xl'}>Wireless with bluetooth</Text></Td>
                             {data.map((item, index) => <Td key={index} border='1px solid #fff' borderTop={0}
                                 borderRight={0}><Center>{item.wWB && <CheckIcon />}</Center></Td>)}
                         </Tr>
                         <Tr>
-                            <Td border={'none'} as={Flex} justifyContent={'flex-end'}><MdTouchApp /></Td>
+                            <Td border={'none'} isNumeric w="20px"><MdTouchApp /></Td>
                             <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}><Text fontSize={'xl'}>Touch interface</Text></Td>
                             {data.map((item, index) => <Td key={index} border='1px solid #fff' borderTop={0}
                                 borderRight={0}><Center>{item.tI && <CheckIcon />}</Center></Td>)}
                         </Tr>
 
                         <Tr>
-                            <Td border={'none'} as={Flex} justifyContent={'flex-end'}><BsFillMicFill /></Td>
+                            <Td border={'none'} isNumeric w="20px"><BsFillMicFill /></Td>
                             <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}><Text fontSize={'xl'}>Remote + Mic</Text>
                             </Td>
                             {data.map((item, index) => <Td key={index} border='1px solid #fff' borderTop={0}
@@ -99,11 +94,10 @@ const TableTry = () => {
                         </Tr>
 
                         <Tr>
-                            <Td border={'none'}><Box as={Flex} justifyContent={'flex-end'}
-                                alignItems='center'><GrStackOverflow /></Box></Td>
+                            <Td border={'none'} isNumeric w="20px"><Box ><GrStackOverflow /></Box></Td>
                             <Td border='1px solid #fff' borderLeft={0} borderRight={0}
                                 borderTop={0}><Text fontSize={'xl'}>Materials</Text></Td>
-                            {data.map((item) => {
+                            {data.map((item, ind) => {
                                 {/* return (
                                     <Td border='1px solid #fff' borderRight={0}
                                         borderTop={0}>
@@ -115,12 +109,12 @@ const TableTry = () => {
                                         </Wrap></Td>
                                 ) */}
                                 return (
-                                    <Td border='1px solid #fff' borderRight={0}
+                                    <Td key={ind} border='1px solid #fff' borderRight={0}
                                         borderTop={0}>
                                         <Box>
                                             {item.m.map((materialItem, index) => {
-                                                if (index == item.m.length - 1) return <Text align='center'>{materialItem}</Text>
-                                                else return <Text align='center'>{materialItem},</Text>
+                                                if (index == item.m.length - 1) return <Text key={index} align='center'>{materialItem}</Text>
+                                                else return <Text key={index} align='center'>{materialItem},</Text>
                                             })}
                                         </Box></Td>
                                 )
@@ -128,7 +122,7 @@ const TableTry = () => {
                             )}
                         </Tr>
                         <Tr>
-                            <Td border={'none'} as={Flex} justifyContent={'flex-end'}><MdColorLens /></Td>
+                            <Td border={'none'} isNumeric w="20px"><MdColorLens /></Td>
                             <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}><Text fontSize={'xl'}>Colours</Text></Td>
                             {data.map((item, index) => {
                                 return (<Td key={index} border='1px solid #fff' borderTop={0} borderRight={0}>
@@ -139,7 +133,7 @@ const TableTry = () => {
                             })}
                         </Tr>
                         <Tr>
-                            <Td border={'none'} as={Flex} justifyContent={'flex-end'}><FaHandHoldingHeart /></Td>
+                            <Td border={'none'} isNumeric w="20px"><FaHandHoldingHeart /></Td>
                             <Td border='1px solid #fff' borderTop={0} borderLeft={0} borderRight={0}
                                 borderBottom={0}><Text fontSize={'xl'}>Fit</Text></Td>
                             {data.map((item, index) => <Td key={index} border='1px solid #fff' borderTop={0} borderRight={0}
@@ -154,33 +148,3 @@ const TableTry = () => {
 }
 
 export default TableTry;
-
-const data = [
-    {
-        "name": "H2",
-        "wWB": false,
-        "tI": true,
-        "rM": true,
-        "m": ["Leather", "fabric", "polymer", "rubber"],
-        "colors": ["gray.300", "red.300", "blue.300", "pink.300", "gray.300"],
-        "fit": "On-ear"
-    },
-    {
-        "name": "H3 ANIC",
-        "wWB": false,
-        "tI": false,
-        "rM": true,
-        "m": ["Stainless steel", "polymer", "rubber",],
-        "colors": ["gray.300", "red.300", "blue.300", "pink.300", "gray.300"],
-        "fit": "Over-ear"
-    },
-    {
-        "name": "H2",
-        "wWB": true,
-        "tI": true,
-        "rM": true,
-        "m": ["Aluminimum", "polymer", "rubber",],
-        "colors": ["gray.300"],
-        "fit": "On-ear"
-    },
-]
